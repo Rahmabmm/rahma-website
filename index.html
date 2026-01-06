@@ -1,0 +1,575 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Rahma Ben Mbarek Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* Feedback Section Styles */
+			.feedback-section {
+				margin: 3rem 0;
+				padding: 2rem;
+				background: rgba(255,255,255,0.05);
+				border-radius: 10px;
+			}
+			
+			.feedback-header {
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+			
+			.feedback-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 1.5rem;
+				margin-bottom: 2rem;
+			}
+			
+			.feedback-card {
+				background: rgba(255,255,255,0.08);
+				padding: 1.5rem;
+				border-radius: 8px;
+				border-left: 4px solid #ffffff;
+				position: relative;
+				animation: float 6s ease-in-out infinite;
+				box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+			
+			.feedback-card:hover {
+				transform: translateY(-10px) !important;
+				box-shadow: 0 10px 25px rgba(255,255,255,0.2);
+			}
+			
+			.feedback-card:nth-child(1) {
+				animation-delay: 0s;
+			}
+			
+			.feedback-card:nth-child(2) {
+				animation-delay: 2s;
+			}
+			
+			.feedback-card:nth-child(3) {
+				animation-delay: 4s;
+			}
+			
+			.feedback-card:nth-child(4) {
+				animation-delay: 1s;
+			}
+			
+			.feedback-card:nth-child(5) {
+				animation-delay: 3s;
+			}
+			
+			.feedback-card:nth-child(6) {
+				animation-delay: 5s;
+			}
+			
+			@keyframes float {
+				0%, 100% {
+					transform: translateY(0px);
+				}
+				50% {
+					transform: translateY(-20px);
+				}
+			}
+			
+			.feedback-rating {
+				color: #ffd700;
+				font-size: 1.2rem;
+				margin-bottom: 0.5rem;
+			}
+			
+			.feedback-text {
+				font-style: italic;
+				margin: 1rem 0;
+				line-height: 1.6;
+			}
+			
+			.feedback-author {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 1rem;
+				padding-top: 1rem;
+				border-top: 1px solid rgba(255,255,255,0.1);
+			}
+			
+			.feedback-author-info {
+				font-weight: bold;
+			}
+			
+			.feedback-author-role {
+				font-size: 0.9rem;
+				opacity: 0.8;
+			}
+			
+			.feedback-date {
+				font-size: 0.85rem;
+				opacity: 0.6;
+			}
+			
+			/* Modal Styles */
+			.modal {
+				display: none;
+				position: fixed;
+				z-index: 1000;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,0.8);
+				overflow: auto;
+			}
+			
+			.error-text {
+				display: none;
+				color: #ff6b6b;
+				font-size: 0.85rem;
+				margin-top: 0.4rem;
+				margin-left: 2rem;
+			}
+
+			.modal-content {
+				background-color: #1e1e1e;
+				margin: 5% auto;
+				padding: 2rem;
+				border: 1px solid #888;
+				border-radius: 10px;
+				width: 90%;
+				max-width: 600px;
+				position: relative;
+				color: #ffffff;
+			}
+			
+			.modal-content label {
+				color: #ffffff;
+				font-weight: bold;
+			}
+			
+			.modal-content input[type="text"],
+			.modal-content input[type="email"],
+			.modal-content select,
+			.modal-content textarea {
+				background-color: #2a2a2a;
+				color: #ffffff;
+				border: 1px solid #555;
+			}
+			
+			.modal-content input[type="text"]:focus,
+			.modal-content input[type="email"]:focus,
+			.modal-content select:focus,
+			.modal-content textarea:focus {
+				border-color: #ffffff;
+				background-color: #333;
+			}
+			
+			.modal-content small {
+				color: #ccc;
+			}
+			
+			.modal-content select option {
+				background-color: #2a2a2a;
+				color: #ffffff;
+			}
+			
+			.close-modal {
+				color: #aaa;
+				float: right;
+				font-size: 28px;
+				font-weight: bold;
+				cursor: pointer;
+				line-height: 20px;
+			}
+			
+			.close-modal:hover {
+				color: #fff;
+			}
+			
+			.modal h2 {
+				margin-top: 0;
+			}
+			
+			.rating-input {
+				display: flex;
+				gap: 0.5rem;
+				margin: 1rem 0;
+			}
+			
+			.star-btn {
+				background: none;
+				border: none;
+				font-size: 2rem;
+				cursor: pointer;
+				color: #444;
+				transition: color 0.3s;
+				padding: 0;
+				margin: 0;
+			}
+			
+			.star-btn:hover {
+				color: #ffd700;
+			}
+			
+			.star-btn.active {
+				color: #ffd700 !important;
+			}
+
+			/* Fixed Checkbox Styles */
+			.custom-checkbox-container {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.8rem;
+				cursor: pointer;
+				padding: 0.5rem 0;
+				position: relative;
+			}
+
+			.custom-checkbox-container input[type="checkbox"] {
+				position: absolute;
+				opacity: 0;
+				cursor: pointer;
+				width: 0;
+				height: 0;
+			}
+
+			.custom-checkbox {
+				width: 24px;
+				height: 24px;
+				min-width: 24px;
+				min-height: 24px;
+				border: 2px solid #ffffff;
+				border-radius: 4px;
+				background: #2a2a2a;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				flex-shrink: 0;
+				position: relative;
+			}
+
+			.custom-checkbox-container input[type="checkbox"]:checked + .custom-checkbox {
+				background: #ffffff;
+				border-color: #ffffff;
+			}
+
+			.custom-checkbox-container input[type="checkbox"]:checked + .custom-checkbox::after {
+				content: '✓';
+				color: #000000;
+				font-size: 18px;
+				font-weight: bold;
+				line-height: 1;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			.custom-checkbox-container:hover .custom-checkbox {
+				border-color: #ccc;
+			}
+
+			.checkbox-label-text {
+				flex: 1;
+				line-height: 1.5;
+				color: #ffffff;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>Rahma Ben Mbarek Portfolio<br /></h1>
+						<p>Data Scientist & AI Engineer</p>
+						<p>Master's in Applied Mathematics specializing in Data Science and Actuarial Science. Skilled in Python, R, and Power BI.</p>
+						<p>Experienced in helping students and teachers with theses, exams, and Word-to-LaTeX document conversion.</p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Summary</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Home</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.facebook.com/rahma.ben.mbarek.178383/" target="_blank" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.linkedin.com/in/rahma-ben-mbarek/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Rahmabmm/" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Featured Post -->
+							<article class="post featured">
+								<header class="major">
+									<h2><a href="cv_Rahma_.pdf" target="_blank">Data Science <br />& AI</a></h2>
+									<p>Design and implement machine learning and AI models, perform advanced data analysis, and build dashboards using Python, R, and Power BI. 
+									   Apply statistical and predictive modeling techniques to solve real-world problems.</p>
+								</header>
+								<span class="image main">
+									<img src="images/d.jpg" alt="" />
+								</span>
+								<ul class="actions special">
+									<li><a href="cv_Rahma_.pdf" class="button large" target="_blank">View CV</a></li>
+								</ul>
+							</article>
+
+						<!-- Posts -->
+							<article class="post featured">
+								<header class="major">
+									<h2><a href="tutor.html">Math Tutoring<br /></a></h2>
+									<p>Private tutoring for Tunisian high school students, helping them understand complex math concepts, prepare for exams, and improve problem-solving skills.</p>
+								</header>
+								<span class="image fit"><img src="images/images.jpg" alt="" /></span>
+								<ul class="actions special">
+									<li><a href="tutor.html" class="button large">Request Tutoring</a></li>
+								</ul>
+							</article>
+
+							<article class="post featured">
+								<header class="major">
+									<h2><a href="academic.html">Academic Document <br />Services</a></h2>
+									<p>Assisting students and teachers with thesis writing, exam preparation, and converting Word documents to LaTeX for professional formatting.</p>
+								</header>
+								<span class="image fit"><img src="images/project.png" alt="" /></span>
+								<ul class="actions special">
+									<li><a href="academic.html" class="button large">Request Service</a></li>
+								</ul>
+							</article>
+
+						<!-- Feedback Section -->
+						<section class="feedback-section">
+							<div class="feedback-header">
+								<h2>Client Testimonials</h2>
+							</div>
+
+							<div class="feedback-grid">
+								<!-- Example Testimonial 1 -->
+								<div class="feedback-card">
+									<div class="feedback-rating">★★★★★</div>
+									<p class="feedback-text">"Excellent tutoring! Very patient and explains concepts clearly."</p>
+									<div class="feedback-author">
+										<div>
+											<div class="feedback-author-info">A.B.</div>
+											<div class="feedback-author-role">1ère année</div>
+										</div>
+										<div class="feedback-date">Dec 2024</div>
+									</div>
+								</div>
+
+								<!-- Example Testimonial 2 -->
+								<div class="feedback-card">
+									<div class="feedback-rating">★★★★★</div>
+									<p class="feedback-text">"Professional LaTeX formatting service. Converted my entire thesis perfectly with all equations and tables. Highly recommended!"</p>
+									<div class="feedback-author">
+										<div>
+											<div class="feedback-author-info">M.K.</div>
+											<div class="feedback-author-role">University Student</div>
+										</div>
+										<div class="feedback-date">Nov 2025</div>
+									</div>
+								</div>
+							</div>
+
+							<div style="text-align: center;">
+								<button onclick="openFeedbackModal()" class="button large primary">Leave Your Feedback</button>
+							</div>
+						</section>
+
+					</div>
+                
+				<!-- Feedback Modal -->
+				<div id="feedbackModal" class="modal">
+					<div class="modal-content">
+						<span class="close-modal" onclick="closeFeedbackModal()">&times;</span>
+						<h2>Share Your Experience</h2>
+						<p>Your feedback helps others and helps me improve my services. Your name will be displayed as initials only.</p>
+						
+						<form id="feedbackForm" method="post" action="https://formsubmit.co/rahmabm20@gmail.com" onsubmit="return validateFeedback()">
+							<input type="hidden" name="_subject" value="New Testimonial Submission">
+							<input type="hidden" name="_captcha" value="false">
+							<input type="hidden" name="_template" value="table">
+							<input type="hidden" name="_next" value="https://rahmabmm.github.io/">
+							<input type="hidden" name="rating" id="ratingValue" value="">
+
+							<div class="fields">
+								<div class="field">
+									<label for="fullname">Your Full Name <span style="color: red;">*</span></label>
+									<input type="text" name="fullname" id="fullname" placeholder="Will be displayed as initials only" required />
+									<small style="opacity: 0.7;">Example: Ahmed Ben Ali will appear as "A.B."</small>
+								</div>
+								
+								<div class="field">
+									<label for="email">Email <span style="color: red;">*</span></label>
+									<input type="email" name="_replyto" id="email" required>
+								</div>
+								
+								<div class="field">
+									<label for="role">Your Role <span style="color: red;">*</span></label>
+									<select name="role" id="role" required>
+										<option value="">Select your role...</option>
+										<option value="Student">Student</option>
+										<option value="Parent">Parent</option>
+										<option value="Teacher">Teacher</option>
+										<option value="University Student">University Student</option>
+										<option value="Professional">Professional</option>
+									</select>
+								</div>
+								
+								<div class="field">
+									<label>Rating <span style="color: red;">*</span></label>
+									<div class="rating-input">
+										<button type="button" class="star-btn" onclick="setRating(1)">★</button>
+										<button type="button" class="star-btn" onclick="setRating(2)">★</button>
+										<button type="button" class="star-btn" onclick="setRating(3)">★</button>
+										<button type="button" class="star-btn" onclick="setRating(4)">★</button>
+										<button type="button" class="star-btn" onclick="setRating(5)">★</button>
+									</div>
+								</div>
+								
+								<div class="field">
+									<label for="feedback">Your Feedback <span style="color: red;">*</span></label>
+									<textarea name="feedback" id="feedback" rows="4" placeholder="Share your experience with my services..." required></textarea>
+								</div>
+								
+								<div class="field">
+									<label class="custom-checkbox-container">
+										<input type="checkbox" name="consent" id="consent" />
+										<span class="custom-checkbox"></span>
+										<span class="checkbox-label-text">
+											I consent to having my feedback displayed on this website with my initials only
+										</span>
+									</label>
+									<span id="consentError" class="error-text">
+										Please check the consent box.
+									</span>
+								</div>
+							</div>
+							
+							<ul class="actions">
+								<li><input type="submit" value="Submit Feedback" class="primary" /></li>
+								<li><button type="button" onclick="closeFeedbackModal()" class="button">Cancel</button></li>
+							</ul>
+						</form>
+					</div>
+				</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>Tunis, Tunisia</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="tel:+21651351032">+216 51 351 032</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:rahmabm20@gmail.com">rahmabm20@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.facebook.com/rahma.ben.mbarek.178383/" target="_blank" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="https://www.linkedin.com/in/rahma-ben-mbarek/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/Rahmabmm/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Rahma Ben Mbarek</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			
+			<script>
+				// Feedback Modal Functions
+				function openFeedbackModal() {
+					document.getElementById('feedbackModal').style.display = 'block';
+				}
+				
+				function closeFeedbackModal() {
+					document.getElementById('feedbackModal').style.display = 'none';
+				}
+				
+				// Close modal when clicking outside
+				window.onclick = function(event) {
+					const modal = document.getElementById('feedbackModal');
+					if (event.target == modal) {
+						modal.style.display = 'none';
+					}
+				}
+				
+				// Rating System
+				let selectedRating = 0;
+				
+				function setRating(rating) {
+					selectedRating = rating;
+					document.getElementById('ratingValue').value = rating;
+					
+					const stars = document.querySelectorAll('.star-btn');
+					stars.forEach((star, index) => {
+						if (index < rating) {
+							star.classList.add('active');
+						} else {
+							star.classList.remove('active');
+						}
+					});
+				}
+				
+				function validateFeedback() {
+					const consentCheckbox = document.getElementById('consent');
+					const consentError = document.getElementById('consentError');
+
+					// Hide error by default
+					consentError.style.display = 'none';
+
+					if (selectedRating === 0) {
+						alert('Please select a rating');
+						return false;
+					}
+
+					if (!consentCheckbox.checked) {
+						consentError.style.display = 'block';
+						// Scroll to error
+						consentError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						return false;
+					}
+
+					return true;
+				}
+			</script>
+
+	</body>
+</html>

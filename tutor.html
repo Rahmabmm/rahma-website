@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Math Tutoring - Rahma Ben Mbarek</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Back to Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li class="active"><a href="tutor.html">Math Tutoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.facebook.com/rahma.ben.mbarek.178383/" target="_blank" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.linkedin.com/in/rahma-ben-mbarek/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Rahmabmm/" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>Math Tutoring Services</h1>
+									<p>Private tutoring for Tunisian high school students</p>
+								</header>
+
+								<!-- Niveaux Section -->
+								<h2>Available Levels </h2>
+								<p>I provide personalized tutoring for the following secondary school levels. Click on each level to see available sections:</p>
+								
+								<style>
+									.niveau-container {
+										display: flex;
+										justify-content: center;
+										gap: 2rem;
+										margin: 2rem 0;
+										flex-wrap: wrap;
+									}
+									.niveau-icon {
+										cursor: pointer;
+										text-align: center;
+										padding: 1.5rem;
+										border: 2px solid rgba(255,255,255,0.2);
+										border-radius: 10px;
+										transition: all 0.3s ease;
+										min-width: 150px;
+									}
+									.niveau-icon:hover {
+										border-color: #ffffff;
+										background: rgba(255,255,255,0.05);
+										transform: translateY(-5px);
+									}
+									.niveau-icon.active {
+										border-color: #ffffff;
+										background: rgba(255,255,255,0.1);
+									}
+									.niveau-icon h3 {
+										font-size: 2.5rem;
+										margin: 0;
+									}
+									.niveau-icon p {
+										margin: 0.5rem 0 0 0;
+										font-size: 1.2rem;
+										font-weight: bold;
+									}
+									.sections-container {
+										display: none;
+										margin-top: 2rem;
+										padding: 2rem;
+										background: rgba(255,255,255,0.05);
+										border-radius: 10px;
+										border-left: 4px solid #ffffff;
+									}
+                                    
+									.sections-container.show {
+										display: block;
+										animation: slideDown 0.3s ease;
+									}
+									@keyframes slideDown {
+										from {
+											opacity: 0;
+											transform: translateY(-10px);
+										}
+										to {
+											opacity: 1;
+											transform: translateY(0);
+										}
+									}
+									.sections-container h3 {
+										color: #ffffff;
+										margin-bottom: 0.5rem;
+										padding: 0.5rem 0;
+										border-bottom: 1px solid rgba(255,255,255,0.2);
+									}
+								</style>
+								
+								<div class="niveau-container">
+                                    <div class="niveau-icon" onclick="toggleSections(event, '1ere')">
+										<h3>📏</h3>
+										<p>1ère Année</p>
+									</div>
+							
+                                    <div class="niveau-icon" onclick="toggleSections(event, '2eme')">
+										<h3>📏</h3>
+										<p>2ème Année</p>
+									</div>
+
+									<div class="niveau-icon" onclick="toggleSections(event, '3eme')">
+										<h3>📏</h3>
+										<p>3ème Année</p>
+									</div>
+								</div>							
+
+								<!-- 3ème Sections -->
+								<div id="3eme-sections" class="sections-container">
+									<h3>3ème Economie</h3>
+									<h3>3ème Sciences</h3>
+									<h3>3ème Informatique</h3>
+									<h3>3ème Lettres</h3>
+								</div>
+
+								<!-- 2ème Sections -->
+								<div id="2eme-sections" class="sections-container">
+									<h3>2ème Sciences</h3>
+									<h3>2ème Informatique</h3>
+									<h3>2ème Économie</h3>
+									<h3>2ème Lettres</h3>
+								</div>
+
+								<!-- 1ère Sections -->
+								<div id="1ere-sections" class="sections-container">
+									<h3>1ère Année</h3>
+								</div>
+
+								<script>
+									function toggleSections(event, niveau) {
+										// Get all section containers
+										const allSections = document.querySelectorAll('.sections-container');
+										const targetSection = document.getElementById(niveau + '-sections');
+										const allIcons = document.querySelectorAll('.niveau-icon');
+										
+										// Remove active class from all icons
+										allIcons.forEach(icon => icon.classList.remove('active'));
+										
+										// If clicking the same section, just close it
+										if (targetSection.classList.contains('show')) {
+											targetSection.classList.remove('show');
+										} else {
+											// Close all sections
+											allSections.forEach(section => section.classList.remove('show'));
+											// Open target section
+											targetSection.classList.add('show');
+											// Add active class to clicked icon
+											event.currentTarget.classList.add('active');
+										}
+									}
+								</script>
+
+								<hr />
+
+								<!-- Session Details -->
+								<h2>Session Details</h2>
+								<div class="box">
+									<p><strong>⏰ Standard Schedule:</strong> Each student receives <strong>2 hours of tutoring per week</strong>, carefully structured to maximize learning and retention.</p>
+									<p><strong>👥 Format Options:</strong> Sessions available in <strong>small groups</strong> or <strong>one-to-one (individual)</strong> format, tailored to your learning preference and needs.</p>
+									<p><strong>🔄 Flexibility:</strong> Additional hours are available upon request for exam preparation, challenging topics, or intensive review sessions.</p>
+									<p><strong>📍 Location:</strong> Sessions can be conducted online or in-person in Tunis (flexible arrangements available).</p>
+								</div>
+
+								<hr />
+
+								<!-- About Your Tutor -->
+								<h2>About Your Tutor</h2>
+								
+								<h3>🎓 Education & Qualifications</h3>
+								<ul>
+									<li><strong>Master's Degree in Applied Mathematics</strong> - Specialization in Data Science, Actuarial Science And Stochastic Control</li>
+									<li>Strong academic background in Applied Mathematics</li>
+									<li>Extensive knowledge of Tunisian curriculum and examination requirements</li>
+								</ul>
+
+								<h3>📚 Teaching Experience</h3>
+								<ul>
+									<li>2 years of experience tutoring secondary school students</li>
+									<li>Proven track record of helping students improve grades and exam performance</li>
+								</ul>
+
+								<h3>💡 Teaching Approach</h3>
+								<ul>
+									<li><strong>Foundation Building:</strong> Ensuring students have solid understanding of fundamental concepts</li>
+									<li><strong>Concept Simplification:</strong> Breaking down complex topics into manageable, understandable parts</li>
+									<li><strong>Problem-Solving Focus:</strong> Developing critical thinking and analytical skills</li>
+									<li><strong>Exam Strategies:</strong> Teaching techniques for efficient problem-solving under exam conditions</li>
+								</ul>
+
+								<hr />
+
+								<!-- Contact Section -->
+								<h2>Ready to Start?</h2>
+								<p>Contact me to schedule your first session, discuss your learning goals, or ask any questions you may have about the tutoring program.</p>
+								
+								<ul class="actions special">
+									<li><a href="mailto:rahmabm20@gmail.com" class="button large primary">Email Me</a></li>
+									<li><a href="tel:+21651351032" class="button large">Call/WhatsApp</a></li>
+								</ul>
+
+								<div class="box">
+									<h3>Contact Information</h3>
+									<p>
+										<strong>Email:</strong> <a href="mailto:rahmabm20@gmail.com">rahmabm20@gmail.com</a><br />
+										<strong>Phone/WhatsApp:</strong> <a href="tel:+21651351032">+216 51 351 032</a><br />
+										<strong>Location:</strong> Tunis, Tunisia
+									</p>
+								</div>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="https://formsubmit.co/rahmabm20@gmail.com" onsubmit="return validateForm()">
+								<!-- FormSubmit Configuration -->
+								<input type="hidden" name="_subject" value="New Tutoring Inquiry from Website">
+								<input type="hidden" name="_captcha" value="false">
+								<input type="hidden" name="_template" value="table">
+								
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name <span style="color: red;">*</span></label>
+										<input type="text" name="name" id="name" required />
+									</div>
+									<div class="field">
+										<label for="email">Email <span style="color: red;">*</span></label>
+										<input type="email" name="email" id="email" required />
+									</div>
+									<div class="field">
+										<label for="phone">Phone <span style="color: red;">*</span></label>
+										<input type="tel" name="phone" id="phone" placeholder="+216 XX XXX XXX" required />
+									</div>
+									<div class="field">
+										<label for="message">Message <span style="color: red;">*</span></label>
+										<textarea name="message" id="message" rows="3" required></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+							
+							<script>
+								function validateForm() {
+									const name = document.getElementById('name').value.trim();
+									const email = document.getElementById('email').value.trim();
+									const phone = document.getElementById('phone').value.trim();
+									const message = document.getElementById('message').value.trim();
+									
+									if (!name || !email || !phone || !message) {
+										alert('Please fill in all required fields (Name, Email, Phone, and Message)');
+										return false;
+									}
+									
+									// Validate email format
+									const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+									if (!emailPattern.test(email)) {
+										alert('Please enter a valid email address');
+										return false;
+									}
+									
+									return true;
+								}
+							</script>
+						</section>
+						<section class="split contact">
+							
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.facebook.com/rahma.ben.mbarek.178383/" target="_blank" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="https://www.linkedin.com/in/rahma-ben-mbarek/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/Rahmabmm/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Rahma Ben Mbarek</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
